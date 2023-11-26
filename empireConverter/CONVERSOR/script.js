@@ -9,6 +9,7 @@ let USDparaBRL;
 let USDparaEUR;
 let CotAtualUSDBRL;
 let CotAtualUSDEUR;
+let ValorCoin = 0.614;
 
 const apiUrl = 'https://economia.awesomeapi.com.br/last/USD-BRL,USD-EUR'
 
@@ -19,8 +20,8 @@ fetch(apiUrl)
     const USDparaEUR = data.USDEUR.bid;
     console.log('Cotação atual USD -> BRL: ', USDparaBRL, '\nCotação USD -> EUR: ', USDparaEUR);
 
-    var CotAtualUSDEUR = 0.614 * USDparaEUR;
-    var CotAtualUSDBRL = 0.614 * USDparaBRL;
+    var CotAtualUSDEUR = ValorCoin * USDparaEUR;
+    var CotAtualUSDBRL = ValorCoin * USDparaBRL;
 
     document.getElementById('resultado').innerHTML = '1 ₵' + ' = ' + CotAtualUSDBRL.toFixed(2) + " R$"
 
@@ -42,6 +43,11 @@ button.addEventListener('click', () => {
       var resultado = 0.614 * valorAconverter;
       document.getElementById("resultado").innerHTML = valorAconverter + " ₵" + " = " + resultado.toFixed(2) + " US$";
       console.log("dolar deu certo");
+    } else if (select.value == "COIN") {
+      var valorAconverter = parseFloat(document.getElementById("inputConverter").value);
+      var resultado = valorAconverter / 3.01;
+      document.getElementById("resultado").innerHTML = valorAconverter + " R$" + " = " + resultado.toFixed(2) + " ₵";
+      console.log("COIN deu certo");
     }
   });
   
